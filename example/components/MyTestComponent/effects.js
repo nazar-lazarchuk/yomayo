@@ -8,21 +8,21 @@
 import { createEffect } from 'my-framework';
 
 // виклик при створенні компоненту
-const testAjax = createEffect(() => {
+const testAjax = createEffect(context => {
   fetch('/test_api')
     .then((res) => res.json())
     .then((res) => res.data)
     .then((data) => {
-      this.address = data.address;
+      context.address = data.address;
     });
 }, () => []);
 
 
 // створення виклику таймауту, який буде спрацьовувати при зміні значення this.count
-const effect1 = createEffect(() => {
-  const tId = setTimeout(() => console.log(`count changed: ${this.count}`), 2000);
+const effect1 = createEffect(context => {
+  const tId = setTimeout(() => console.log(`count changed: ${context.count}`), 2000);
   return () => clearTimeout(tId);
-}, state => [state.count]);
+}, context => [context.count]);
 
 
 export default [effect1, testAjax];

@@ -4,4 +4,4 @@ import Component from './components/MyTestComponent';
 
 console.log(Component);
 
-renderApp(Component);
+renderApp('#app', Component);

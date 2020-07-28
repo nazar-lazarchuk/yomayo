@@ -11,8 +11,12 @@ export const initialState = {
 // обчислювальні властивості компонента
 export const computedState = {
   // проста обчислювальна властивість
-  fullName: (state) => state.firstName + ' ' + state.lastName,
+  fullName() {
+    return this.firstName + ' ' + this.lastName;
+  },
 
   // більш складна обчислювальна властивість
-  initials: (state) => state.fullName + ' ' + state.address,
+  initials(){
+    return this.fullName + ' ' + this.address;
+  }
 };
