@@ -10,6 +10,9 @@ export const initialState = {
 
 // обчислювальні властивості компонента
 export const computedState = {
+  test() {
+    return this.fullName + this.initials;
+  },
   // проста обчислювальна властивість
   fullName() {
     return this.firstName + ' ' + this.lastName;
