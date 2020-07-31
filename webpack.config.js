@@ -27,7 +27,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'my-framework': path.resolve(__dirname, 'lib'),
+      'my-framework': path.resolve(__dirname, 'src'),
     },
     extensions: ['.js'],
   },
