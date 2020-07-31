@@ -17,7 +17,7 @@ function renderApp(selector, rootComponent) {
   const {
     state: { initialState, computedState },
     actions,
-    render
+    render,
   } = rootComponent;
 
   // створюємо стан компонента
