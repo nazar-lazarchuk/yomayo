@@ -1,5 +1,13 @@
 import { setEventsHandler, processingEvents } from './DOMEventsHandler';
 
+/**
+ * Функція для першого рендеринга компонента в DOM
+ * @param {Object} actions 
+ * @param {Function<void>} render 
+ * @param {HTMLElement} node 
+ * @param {Object} state
+ * @returns {string}
+ */
 function mount (actions, render, node, state) {
   const template = render(state);
   const [view, eventDataList] = processingEvents(template);
@@ -11,6 +19,7 @@ function mount (actions, render, node, state) {
   setEventsHandler(eventDataList, actions, state, node);
 
   console.log(state);
+  return view;
 }
 
 export default mount;

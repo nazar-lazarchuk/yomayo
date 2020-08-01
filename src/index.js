@@ -1,7 +1,10 @@
-import { create } from './create';
+import createState from './createState';
 import mount from './mount';
 
-// кореневий вузол для апки
+/**
+ * Кореневий вузол для апки
+ * @type {HTMLElement}
+ */
 let rootNode = null;
 
 function renderApp(selector, rootComponent) {
@@ -20,11 +23,11 @@ function renderApp(selector, rootComponent) {
     render,
   } = rootComponent;
 
-  // створюємо стан компонента
-  const state = create(initialState, computedState, onUpdate);
+  const state = createState(initialState, computedState, onUpdate);
 
-  // рендеримо його в DOM
-  mount(actions, render, rootNode, state);
+  const view = mount(actions, render, rootNode, state);
+
+  console.log(view);
 
   // при оновленні, знову рендеримо в DOM
   // TODO: VirtualDOM

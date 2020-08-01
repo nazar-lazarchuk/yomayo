@@ -16,7 +16,14 @@ const {
   setIncalculableComputedKeys,
 } = initIncalculableComputed();
 
-function create(initialState, computedState, onUpdate) {
+/**
+ * Функція для створення стану компонента
+ * @param {Object} initialState 
+ * @param {Object} computedState 
+ * @param {Function<void>} onUpdate 
+ * @returns {Object}
+ */
+function createState(initialState, computedState, onUpdate) {
   // інкапсульовані дані computed-обрахунку
   const COMPUTED_VALUES = {};
 
@@ -166,4 +173,4 @@ function createComputedDependenciesTree(target, property, calculate) {
   return result;
 }
 
-export { create };
+export default createState;
