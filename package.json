@@ -1,10 +1,14 @@
 {
-  "name": "my-framework",
+  "name": "@nazar-lazarchuk/yomayo",
   "version": "1.0.0",
   "main": "example/index.js",
   "license": "MIT",
   "author": "Nazariy Lazarchuk",
   "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nazar-lazarchuk/yomayo.git"
+  },
   "scripts": {
     "dev": "webpack-dev-server --history-api-fallback --inline --progress",
     "prod": "webpack --mode=prodcution"
