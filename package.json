@@ -4,6 +4,7 @@
   "main": "example/index.js",
   "license": "MIT",
   "author": "Nazariy Lazarchuk",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "dev": "webpack-dev-server --history-api-fallback --inline --progress",
     "prod": "webpack --mode=prodcution"
