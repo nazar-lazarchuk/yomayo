@@ -4,7 +4,6 @@
   "main": "src/index.js",
   "license": "MIT",
   "author": "Nazariy Lazarchuk",
-  "publishConfig": { "registry": "https://npm.pkg.github.com" },
   "repository": {
     "type": "git",
     "url": "git@github.com:nazar-lazarchuk/yomayo.git"
