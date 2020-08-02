@@ -1,6 +1,3 @@
-// список всіх обробників подій з window
-import DOMEvents from './DOMEvents.json';
-
 const ATTRIBUTE_PREFIX = 'data-framework-event-'
 let eventCount = 0;
 /**

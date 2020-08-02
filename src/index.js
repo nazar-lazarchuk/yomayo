@@ -1,5 +1,6 @@
 import createState from './createState';
 import mount from './mount';
+import { createVDOMByHTML } from './VNode';
 
 /**
  * Кореневий вузол для апки
@@ -27,7 +28,8 @@ function renderApp(selector, rootComponent) {
 
   const view = mount(actions, render, rootNode, state);
 
-  console.log(view);
+  const VDOM = createVDOMByHTML(view);
+  console.log(VDOM);
 
   // при оновленні, знову рендеримо в DOM
   // TODO: VirtualDOM

@@ -24,10 +24,16 @@ const {
  * @returns {Object}
  */
 function createState(initialState, computedState, onUpdate) {
-  // інкапсульовані дані computed-обрахунку
+  /**
+   * інкапсульовані дані computed-обрахунку
+   * @type {Object}
+   */
   const COMPUTED_VALUES = {};
 
-  // дерево залежностей computed від state
+  /**
+   * дерево залежностей computed від state
+   * @type {Object}
+   */
   const COMPUTED_DEPS = {};
 
   const propertyChangeObserver = (property) => {
@@ -36,11 +42,12 @@ function createState(initialState, computedState, onUpdate) {
   };
 
   const state = createProxy(
-    // будуємо проксі на копію initialState
+    // будуємо проксі з копії initialState
     { ...initialState },
 
     // обробник зміни властивості
     property => {
+      // хендлимо Observer якщо змінився стан компонента
       if (Object.keys(initialState).includes(property)) {
         addObsCompDependency(property);
       }
@@ -63,6 +70,7 @@ function createState(initialState, computedState, onUpdate) {
         && value instanceof Function;
 
       if (isProperyComputed) {
+        // перший запис computed-властивості в компоненті
         target[property] = value;
         return true;
       }
