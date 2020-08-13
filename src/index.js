@@ -1,16 +1,16 @@
-import r from './renderApp';
+import i from './init';
 import createState from './createState';
 import mount from './mount';
 import update from './update';
 
-function renderApp (...args) {
+function init (...args) {
   const lifecycleMethods = {
     createState,
     mount,
     update,
   };
 
-  return r(lifecycleMethods, ...args);
+  return i(lifecycleMethods, ...args);
 }
 
 function createElement(tag, props, ...children) {
@@ -26,7 +26,7 @@ function createEffect() {
 }
 
 export {
-  renderApp,
+  init,
   createEffect,
   createElement,
 };

@@ -4,7 +4,13 @@
  */
 let rootNode = null;
 
-function renderApp({ createState, mount, update }, selector, rootComponent) {
+/**
+ * Функція для генерації додатку в режимі SPA
+ * @param {*} lifecycle
+ * @param {*} selector
+ * @param {*} rootComponent 
+ */
+function init({ createState, mount, update }, selector, rootComponent) {
   if (rootNode) {
     return;
   }
@@ -26,7 +32,7 @@ function renderApp({ createState, mount, update }, selector, rootComponent) {
   const initialVDOM = getVirtualDOM({ ...state, ...bindedActions });
 
   /**
-   * Змінна для актуального Virtual DOM
+   * Змінна для збереження останнього (актуального) Virtual DOM
    * @type {Object}
    */
   let VDOM = initialVDOM;
@@ -62,4 +68,4 @@ function getBindedActions(actions, state) {
   return result;
 }
 
-export default renderApp;
+export default init;

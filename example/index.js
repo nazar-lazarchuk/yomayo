@@ -1,5 +1,5 @@
-import { renderApp } from 'yomayo';
+import { init } from 'yomayo';
 
 import Component from './components/MyTestComponent';
 
-renderApp('#app', Component);
+init('#app', Component);
