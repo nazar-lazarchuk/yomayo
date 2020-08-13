@@ -1,4 +1,4 @@
-import { renderApp } from 'my-framework';
+import { renderApp } from 'yomayo';
 
 import Component from './components/MyTestComponent';
 

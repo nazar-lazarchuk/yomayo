@@ -60,14 +60,22 @@ function getBindedActions(actions, state) {
   return result;
 }
 
-export { renderApp };
-
-export function createEffect() {
+function createEffect() {
   // console.log('createEffect');
 }
 
-export const createElement = (tag, props, ...children) => ({
-  tag,
-  props: props || {},
-  children: children || [],
-});
+function createElement(tag, props, ...children) {
+  return {
+    tag,
+    props: props || {},
+    children: children || [],
+  };
+};
+
+export {
+  renderApp,
+  createEffect,
+  createElement,
+};
+
+export default createElement;

@@ -1,7 +1,7 @@
-import { createElement } from 'my-framework';
-/** @jsx createElement */
+import Yomayo from 'yomayo';
+/** @jsx Yomayo */
 
-export default (context) => {
+export default (ctx) => {
   const {
     fullName,
     count,
@@ -9,7 +9,7 @@ export default (context) => {
     doDecrement,
     changeName,
     test,
-  } = context;
+  } = ctx;
 
   return (
     <div style={`border: ${count}px solid red`}>

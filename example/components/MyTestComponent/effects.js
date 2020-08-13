@@ -5,7 +5,7 @@
 // 1) можливість робити всі операції до виклику template (render)
 // 2) пропу для скасування першого запуску функції (шось тіпа postpone: bool третім параметром в createEffect)
 
-import { createEffect } from 'my-framework';
+import { createEffect } from 'yomayo';
 
 // виклик при створенні компоненту
 const testAjax = createEffect(context => {
