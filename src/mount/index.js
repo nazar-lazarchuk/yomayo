@@ -1,25 +1,33 @@
-import { setEventsHandler, processingEvents } from './DOMEventsHandler';
-
 /**
  * Функція для першого рендеринга компонента в DOM
- * @param {Object} actions 
- * @param {Function<void>} render 
  * @param {HTMLElement} node 
- * @param {Object} state
- * @returns {string}
+ * @param {Object} VDOM
+ * @returns {void}
  */
-function mount (actions, render, node, state) {
-  const template = render(state);
-  const [view, eventDataList] = processingEvents(template);
+function mount (node, VDOM) {
+  if (VDOM === false || VDOM === null) return;
 
-  // вставка в DOM
-  node.innerHTML = view;
+  if (typeof VDOM === 'object' && VDOM.tag) {
+    const el = document.createElement(VDOM.tag);
 
-  // ініціалізація (відновлення) подій
-  setEventsHandler(eventDataList, actions, state, node);
+    Object.entries(VDOM.props).forEach(([name, value]) => {
+      if (name.startsWith('on') && name.toLowerCase() in window)
+        el.addEventListener(name.toLowerCase().substr(2), value)
+      else el.setAttribute(name, value.toString());
+    });
 
-  console.log(state);
-  return view;
+    VDOM.children.forEach(child => {
+      mount(el, child)
+    });
+
+    VDOM.el = el;
+
+    node.append(el);
+    return;
+  }
+
+  node.append(VDOM);
+  return;
 }
 
 export default mount;

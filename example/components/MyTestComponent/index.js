@@ -9,7 +9,9 @@ import * as actions from './actions';
 
 import effects from './effects';
 
-import render from './view.ejs';
+// import render from './view.ejs';
+
+import render from './render.js';
 
 export default {
   props,

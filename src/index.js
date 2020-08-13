@@ -1,6 +1,5 @@
 import createState from './createState';
 import mount from './mount';
-import { createVDOMByHTML } from './VNode';
 
 /**
  * Кореневий вузол для апки
@@ -9,7 +8,6 @@ import { createVDOMByHTML } from './VNode';
 let rootNode = null;
 
 function renderApp(selector, rootComponent) {
-  // повністю рендеримо DOM лише в перший раз
   if (rootNode) {
     return;
   }
@@ -21,21 +19,39 @@ function renderApp(selector, rootComponent) {
   const {
     state: { initialState, computedState },
     actions,
-    render,
   } = rootComponent;
+  const getVirtualDOM = rootComponent.render;
 
   const state = createState(initialState, computedState, onUpdate);
 
-  const view = mount(actions, render, rootNode, state);
+  // привязую контекст екшнів до стейт-об'єкту
+  const bindedActions = getBindedActions(actions, state);
 
-  const VDOM = createVDOMByHTML(view);
-  console.log(VDOM);
+  // створення initial Virtual DOM
+  const VDOM = getVirtualDOM({ ...state, ...bindedActions });
+
+  // генерація справжніх тегів
+  mount(rootNode, VDOM);
+
+  console.log(state, VDOM);
 
   // при оновленні, знову рендеримо в DOM
-  // TODO: VirtualDOM
   function onUpdate(newState) {
-    mount(actions, render, rootNode, newState);
+    console.log('Update');
+
+    const newVDOM = getVirtualDOM({ ...state, ...bindedActions });
+    console.log(newVDOM);
   }
+}
+
+function getBindedActions(actions, state) {
+  const result = {};
+
+  Object.keys(actions).forEach(key => {
+    result[key] = event => actions[key].call(state, event);
+  });
+
+  return result;
 }
 
 export { renderApp };
@@ -43,3 +59,9 @@ export { renderApp };
 export function createEffect() {
   // console.log('createEffect');
 }
+
+export const createElement = (tag, props, ...children) => ({
+  tag,
+  props: props || {},
+  children: children || [],
+});

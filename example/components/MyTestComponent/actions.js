@@ -1,6 +1,7 @@
 // функції можуть змінювати state та ловити computed/props через контекст this
 
 export const doIncrement = function() {
+  console.log('work');
   this.count++;
 }
 
