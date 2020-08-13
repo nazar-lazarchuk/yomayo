@@ -12,7 +12,7 @@ export default (context) => {
   } = context;
 
   return (
-    <div>
+    <div style={`border: ${count}px solid red`}>
       <h1>Dude {fullName} is cool!</h1>
 
       <h2>Count: {count}</h2>

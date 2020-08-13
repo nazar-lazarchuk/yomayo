@@ -1,5 +1,6 @@
 import createState from './createState';
 import mount from './mount';
+import update from './update';
 
 /**
  * Кореневий вузол для апки
@@ -28,7 +29,8 @@ function renderApp(selector, rootComponent) {
   const bindedActions = getBindedActions(actions, state);
 
   // створення initial Virtual DOM
-  const VDOM = getVirtualDOM({ ...state, ...bindedActions });
+  const initialVDOM = getVirtualDOM({ ...state, ...bindedActions });
+  let VDOM = initialVDOM;
 
   // генерація справжніх тегів
   mount(rootNode, VDOM);
@@ -40,7 +42,8 @@ function renderApp(selector, rootComponent) {
     console.log('Update');
 
     const newVDOM = getVirtualDOM({ ...state, ...bindedActions });
-    console.log(newVDOM);
+    VDOM = update(newVDOM, VDOM);
+    console.log(VDOM);
   }
 }
 

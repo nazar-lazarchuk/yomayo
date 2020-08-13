@@ -1,3 +1,4 @@
+import { setAttr } from '../utils';
 /**
  * Функція для першого рендеринга компонента в DOM
  * @param {HTMLElement} node 
@@ -11,9 +12,7 @@ function mount (node, VDOM) {
     const el = document.createElement(VDOM.tag);
 
     Object.entries(VDOM.props).forEach(([name, value]) => {
-      if (name.startsWith('on') && name.toLowerCase() in window)
-        el.addEventListener(name.toLowerCase().substr(2), value)
-      else el.setAttribute(name, value.toString());
+      setAttr(el, name, value);
     });
 
     VDOM.children.forEach(child => {
