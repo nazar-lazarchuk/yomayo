@@ -20,10 +20,10 @@ const {
  * Функція для створення стану компонента
  * @param {Object} initialState 
  * @param {Object} computedState 
- * @param {Function<void>} onUpdate 
+ * @param {Function<void>} emitUpdate 
  * @returns {Object}
  */
-function createState(initialState, computedState, onUpdate) {
+function createState(initialState, computedState, emitUpdate) {
   /**
    * інкапсульовані дані computed-обрахунку
    * @type {Object}
@@ -38,7 +38,7 @@ function createState(initialState, computedState, onUpdate) {
 
   const propertyChangeObserver = (property) => {
     setIncalculableComputedKeys(createDependenciesArray(COMPUTED_DEPS, property));
-    onUpdate(state);
+    emitUpdate();
   };
 
   const state = createProxy(

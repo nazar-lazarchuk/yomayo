@@ -23,33 +23,39 @@ function renderApp(selector, rootComponent) {
   } = rootComponent;
   const getVirtualDOM = rootComponent.render;
 
-  const state = createState(initialState, computedState, onUpdate);
+  const state = createState(initialState, computedState, handleUpdate);
 
-  // привязую контекст екшнів до стейт-об'єкту
   const bindedActions = getBindedActions(actions, state);
 
-  // створення initial Virtual DOM
   const initialVDOM = getVirtualDOM({ ...state, ...bindedActions });
+
+  /**
+   * Змінна для актуального Virtual DOM
+   * @type {Object}
+   */
   let VDOM = initialVDOM;
 
-  // генерація справжніх тегів
+  // генерація DOM в перший раз
   mount(rootNode, VDOM);
 
   console.log(state, VDOM);
 
-  // при оновленні, знову рендеримо в DOM
-  function onUpdate(newState) {
-    console.log('Update');
-
+  function handleUpdate() {
     const newVDOM = getVirtualDOM({ ...state, ...bindedActions });
     update(newVDOM, VDOM);
   
     VDOM = newVDOM;
   
-    console.log(VDOM);
+    console.log('Змінився стан компонента!', VDOM);
   }
 }
 
+/**
+ * Функція для привязки методів до контексту компонента
+ * @param {Object} actions події
+ * @param {ProxyConstructor} state стан компоненту
+ * @returns {Object} 
+ */
 function getBindedActions(actions, state) {
   const result = {};
 
@@ -60,10 +66,6 @@ function getBindedActions(actions, state) {
   return result;
 }
 
-function createEffect() {
-  // console.log('createEffect');
-}
-
 function createElement(tag, props, ...children) {
   return {
     tag,
@@ -71,6 +73,10 @@ function createElement(tag, props, ...children) {
     children: children || [],
   };
 };
+
+function createEffect() {
+  // console.log('createEffect');
+}
 
 export {
   renderApp,
