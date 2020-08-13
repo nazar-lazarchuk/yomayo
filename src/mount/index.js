@@ -5,8 +5,12 @@ import { setAttr } from '../utils';
  * @param {Object} VDOM
  * @returns {void}
  */
-function mount (node, VDOM) {
-  if (VDOM === false || VDOM === null) return;
+function mount (node, VDOM, replaceNode) {
+  if (VDOM === false || VDOM === null) {
+    const el = document.createComment(' ');
+    node.append(el);
+    return;
+  }
 
   if (typeof VDOM === 'object' && VDOM.tag) {
     const el = document.createElement(VDOM.tag);
@@ -21,7 +25,11 @@ function mount (node, VDOM) {
 
     VDOM.el = el;
 
-    node.append(el);
+    if (replaceNode) {
+      node.replaceChild(el, replaceNode);
+    } else {
+      node.append(el);
+    }
     return;
   }
 

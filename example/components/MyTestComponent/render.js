@@ -15,6 +15,7 @@ export default (context) => {
     <div style={`border: ${count}px solid red`}>
       <h1>Dude {fullName} is cool!</h1>
 
+      {count % 2 === 1 && <h2>Count Непарний</h2>}
       <h2>Count: {count}</h2>
       <button type="button" onClick={doIncrement}>
         Increment

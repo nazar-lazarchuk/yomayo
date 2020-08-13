@@ -42,7 +42,10 @@ function renderApp(selector, rootComponent) {
     console.log('Update');
 
     const newVDOM = getVirtualDOM({ ...state, ...bindedActions });
-    VDOM = update(newVDOM, VDOM);
+    update(newVDOM, VDOM);
+  
+    VDOM = newVDOM;
+  
     console.log(VDOM);
   }
 }
