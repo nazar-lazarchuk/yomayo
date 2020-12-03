@@ -15,6 +15,7 @@
     },
     "exclude": [
         "example",
-        "dist"
+        "dist",
+        "bin"
     ]
 }

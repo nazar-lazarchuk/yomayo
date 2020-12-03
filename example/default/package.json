@@ -1,0 +1,14 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "yomayo build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "yomayo": "file:../../"
+  }
+}
