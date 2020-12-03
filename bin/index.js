@@ -1,6 +1,15 @@
 #!/usr/bin/env node
 
-// Check node version before requiring/doing anything else
-// The user may be on a very old node version
+const [, , command, filePath] = process.argv;
 
-console.log('this is bin');
+if (command === 'build') {
+  const path = require('path');
+  const { INIT_CWD } = process.env;
+
+  const resolvedFilePath = path.resolve(INIT_CWD, filePath);
+  console.log(resolvedFilePath);
+  // const app = require(resolvedFilePath);
+  return;
+}
+
+console.log('this is bin', INIT_CWD, command, filePath);
