@@ -7,8 +7,10 @@ if (command === 'build') {
   const { INIT_CWD } = process.env;
 
   const resolvedFilePath = path.resolve(INIT_CWD, filePath);
-  console.log(resolvedFilePath);
-  // const app = require(resolvedFilePath);
+
+  const app = require(resolvedFilePath);
+  console.log(app);
+
   return;
 }
 
