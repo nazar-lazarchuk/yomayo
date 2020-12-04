@@ -20,5 +20,8 @@
   },
   "bin": {
     "yomayo": "bin/index.js"
+  },
+  "dependencies": {
+    "uid": "^2.0.0"
   }
 }

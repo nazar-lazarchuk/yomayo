@@ -7,6 +7,7 @@ export type ComponentType = {
 export type FrameworkType = {
   $$type: 'data';
   $$value: any;
+  $$id: string;
 };
 
 export type ChildType = ComponentType | FrameworkType;

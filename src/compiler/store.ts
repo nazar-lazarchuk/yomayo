@@ -1,3 +1,5 @@
+import { uid } from 'uid';
+
 import { FrameworkType } from './types';
 
 interface IContext {
@@ -19,6 +21,7 @@ const setData: SetData = (initialData) => {
     result[key] = {
       $$type: 'data',
       $$value: initialData[key],
+      $$id: uid(),
     };
   });
 
