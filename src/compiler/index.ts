@@ -1,9 +1,6 @@
 import { createElement } from './utils';
 
-const App = (options: any) => {
-  console.log(options);
-};
-
-export { App };
+export { App } from './app';
+export { Store } from './Store';
 
 export default createElement;
