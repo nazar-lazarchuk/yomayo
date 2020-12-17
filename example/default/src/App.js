@@ -1,16 +1,10 @@
-import Yomayo from 'yomayo';
-/** @jsx Yomayo */
+import { jsx } from 'yomayo';
+/** @jsx jsx */
 
-import { getContext } from './Store';
+import { appDataLayer } from './store';
+const { addData, get } = appDataLayer;
 
-export default () => {
-  const context = getContext();
+const text = addData('Hello world');
+const $text = get(text);
 
-  const data = context.setData({
-    name: 'App Component'
-  });
-
-  return (
-    <h1>{data.name}</h1>
-  );
-};
+export default <h1>{$text}</h1>;

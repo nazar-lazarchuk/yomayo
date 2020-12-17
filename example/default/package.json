@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build:code": "webpack --mode production",
-    "build": "yomayo build ./build/main.js"
+    "build:cli": "yomayo build ./build/main.js",
+    "build": "npm run build:code && npm run build:cli"
   },
   "author": "",
   "license": "ISC",

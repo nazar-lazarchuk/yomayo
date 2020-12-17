@@ -1,9 +1,6 @@
 import { App } from 'yomayo';
+import { store } from './store.js';
 
-import AppStore from './Store.js';
 import AppComponent from './App.js';
 
-export default new App({
-  rootComponent: AppComponent,
-  rootStore: AppStore,
-});
+export default new App(store)(AppComponent);

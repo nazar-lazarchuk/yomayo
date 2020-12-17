@@ -1,7 +1,8 @@
-import { Store } from 'yomayo';
+import { createStore, StoreModule } from 'yomayo';
 
-const store = new Store();
+export const appDataLayer = new StoreModule();
 
-const { getContext } = store;
-export { getContext };
-export default store;
+export const store = createStore([
+  appDataLayer,
+  // ...,
+]);
