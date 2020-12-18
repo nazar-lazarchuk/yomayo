@@ -7,4 +7,4 @@ const { addData, get } = appDataLayer;
 const text = addData('Hello world');
 const $text = get(text);
 
-export default <h1>{$text}</h1>;
+export default <h1 onClick={() => text.set('Work')}>{$text}</h1>;
