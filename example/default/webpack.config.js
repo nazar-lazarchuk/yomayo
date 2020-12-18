@@ -6,6 +6,9 @@ module.exports = {
   },
   output: {
     filename: 'main.js',
+    library: 'app',
+    libraryTarget: 'umd',
+    globalObject: 'this',
     path: path.resolve(__dirname, './build'),
     publicPath: '/',
   },
