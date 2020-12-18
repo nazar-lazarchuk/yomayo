@@ -2,22 +2,18 @@ import { uid } from 'uid';
 
 import {
   Writable,
-  IStoreDataFormat,
   IStoreModule,
   IRenderDataFormat,
 } from './index.types';
 
 export class StoreModule implements IStoreModule {
   readonly key = uid();
-  readonly data: { [key: string]: IStoreDataFormat } = {};
+  readonly data = {} as { [key: string]: any };
   readonly computed = {};
 
   addData = (initialValue: any) => {
     const key = uid();
-    this.data[key] = {
-      key,
-      value: initialValue,
-    };
+    this.data[key] = initialValue;
 
     const writable: Writable = {
       key,
@@ -33,7 +29,6 @@ export class StoreModule implements IStoreModule {
   };
 
   get = (writable: Writable): IRenderDataFormat => {
-    const { key } = this.data[writable.key];
-    return { key };
+    return { key: this.key + '_' + writable.key };
   };
 }

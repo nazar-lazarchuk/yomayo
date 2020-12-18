@@ -4,18 +4,13 @@ export interface Writable {
   update(f: (previousValue: any) => any): void;
 }
 
-export interface IStoreDataFormat {
-  key: string;
-  value: any;
-}
-
 export interface IRenderDataFormat {
   key: string;
 }
 
 export interface IStoreModule {
   readonly key: string;
-  data: { [key: string]: IStoreDataFormat };
+  data: { [key: string]: any };
   computed: { [key: string]: any };
 
   addData(initialValue: any): Writable;
