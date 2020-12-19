@@ -1,10 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StoreModule = exports.createStore = exports.App = void 0;
-var App = function (store) { return function (render) {
-    return { store: store, render: render };
-}; };
-exports.App = App;
+exports.StoreModule = exports.createStore = void 0;
 var createStore = function (modules) {
     return { modules: modules };
 };

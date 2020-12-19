@@ -4,12 +4,17 @@ import { jsx } from 'yomayo';
 import { appDataLayer } from './store';
 const { addData, get } = appDataLayer;
 
-const text = addData('Hello world');
-const $text = get(text);
+export default () => {
+  // Створення об'єкту в глобальному сховищі
+  const text = addData('Hello world');
 
-export default (
-  <div>
-    <h1>{$text}</h1>
-    <button onClick={() => text.set('Work')}>Change text</button>
-  </div>
-);
+  // отримати формат для виводу в темплейт
+  const $text = get(text);
+
+  return (
+    <div>
+      <h1>{$text}</h1>
+      <button onClick={() => text.set('Work')}>Change text</button>
+    </div>
+  );
+}

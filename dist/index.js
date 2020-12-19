@@ -11,6 +11,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.jsx = void 0;
+__exportStar(require("./app"), exports);
 __exportStar(require("./store"), exports);
 var jsx_1 = require("./jsx");
 Object.defineProperty(exports, "jsx", { enumerable: true, get: function () { return jsx_1.createElement; } });
