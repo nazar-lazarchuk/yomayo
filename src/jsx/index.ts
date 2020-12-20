@@ -1,9 +1,4 @@
-export function createElement(tag: any, props: any, ...children: any) {
-  if (typeof tag === 'function') return tag(props, children);
+import { createElement } from './createElement';
+function Fragment() {}
 
-  return {
-    tag,
-    props: props || {},
-    children: children || [],
-  };
-}
+export default { createElement, Fragment };

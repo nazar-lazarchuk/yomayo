@@ -1,3 +1,3 @@
-export const App = (store: any) => (render: any) => {
+export const createApp = (store: any) => (render: any) => {
   return { store, render };
 };

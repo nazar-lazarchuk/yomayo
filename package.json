@@ -1,7 +1,6 @@
 {
   "name": "yomayo",
   "version": "1.0.0",
-  "main": "dist/index.js",
   "license": "MIT",
   "author": "NazarLazarchuk",
   "repository": {
@@ -24,5 +23,16 @@
   },
   "dependencies": {
     "uid": "^2.0.0"
+  },
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./jsx": {
+      "import": "./dist/jsx/index.js",
+      "require": "./dist/jsx/index.js"
+    }
   }
 }

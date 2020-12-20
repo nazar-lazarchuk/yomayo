@@ -1,8 +1,8 @@
-import { App, jsx } from 'yomayo';
-/** @jsx jsx */
+import jsx from 'yomayo/jsx';
+import { createApp } from 'yomayo';
 
 import { store } from './store.js';
 
-import AppComponent from './App.js';
+import { Document, App as AppComponent } from './components';
 
-export default App(store)(<AppComponent />)
+export default createApp(store)(<Document App={AppComponent} />)
