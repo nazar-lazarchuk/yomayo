@@ -1,5 +1,3 @@
-import jsx from 'yomayo/jsx';
-
 export default ({ App }) => {
   return (
     <html>

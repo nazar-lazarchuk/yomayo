@@ -1,5 +1,3 @@
-import jsx from 'yomayo/jsx';
-
 import { appDataLayer } from '../store';
 const { addData, get } = appDataLayer;
 

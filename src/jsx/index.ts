@@ -1,4 +1,2 @@
-import { createElement } from './createElement';
-function Fragment() {}
-
-export default { createElement, Fragment };
+export { createElement } from './createElement';
+export function Fragment() {}

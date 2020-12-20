@@ -1,4 +1,3 @@
-import jsx from 'yomayo/jsx';
 import { createApp } from 'yomayo';
 
 import { store } from './store.js';
