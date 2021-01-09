@@ -5,4 +5,3 @@ var createElement_1 = require("./createElement");
 Object.defineProperty(exports, "createElement", { enumerable: true, get: function () { return createElement_1.createElement; } });
 function Fragment() { }
 exports.Fragment = Fragment;
-// export default { createElement, Fragment };

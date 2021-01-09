@@ -7,4 +7,3 @@ export function createElement(tag: any, props: any, ...children: any) {
     children: children || [],
   };
 }
-
