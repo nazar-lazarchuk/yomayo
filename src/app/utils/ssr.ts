@@ -2,30 +2,11 @@ import htmlTags from 'html-tags';
 import voidHtmlTags from 'html-tags/void';
 import { uid } from 'uid';
 //
-import { Listener, isListener, parseRealListenerName } from './getListeners';
+import { isListener, parseRealListenerName } from './getListeners';
+//
+import { RenderCallback } from './ssr.types';
 
-type GetListenerFC = (listener: Listener) => void;
-
-export function renderInitialDocumentLayout(render: any, getListeners: GetListenerFC): string {
-  return '<!DOCTYPE html>' + renderHtmlRecursively(render, getListeners);
-}
-
-function renderHtmlRecursively(render: any, getListeners: GetListenerFC): string {
-  if (typeof render === 'object' && render.tag) {
-    return renderTagProjection(render, getListeners);
-  }
-
-  if (typeof render === 'string') return render;
-
-  // TODO: get initial value from store
-  if (typeof render === 'object' && render.key) {
-    return render.key;
-  }
-
-  return '';
-}
-
-function renderTagProjection(render: any, getListeners: GetListenerFC): string {
+const renderProjectionOfTag: RenderCallback = (render, store, getListeners) => {
   let listenerKey: string = '';
 
   const listeners: string[] = Object.keys(render.props)
@@ -54,10 +35,37 @@ function renderTagProjection(render: any, getListeners: GetListenerFC): string {
   if (htmlTags.includes(render.tag)) {
     return (
       `<${render.tag}${attributes}${listenerKey}>` + 
-        render.children.reduce((acc: string, c: any) => acc += renderHtmlRecursively(c, getListeners), '') +
+        render.children.reduce((acc: string, c: any) => acc += renderHtmlRecursively(c, store, getListeners), '') +
       `</${render.tag}>`
     );
   }
 
-  throw new Error(`Tag '${render.tag}' does not exists`);
+  throw new Error(`Tag '${render.tag}' does not exist`);
 }
+
+const renderHtmlRecursively: RenderCallback = (render, store, getListeners) => {
+  if (typeof render === 'object' && render.tag) {
+    return renderProjectionOfTag(render, store, getListeners);
+  }
+
+  if (typeof render === 'string') return render;
+
+  // TODO: redesign modules functionality
+  if (typeof render === 'object' && render.key) {
+    const [moduleKey, dataKey] = render.key.split('_');
+    const module = store.modules.find(m => m.key === moduleKey);
+    if (!module) return '';
+    return module.data[dataKey];
+  }
+
+  // false, 0, null, NaN values
+  if (!render) return '';
+
+  if (render && render.toString) return render.toString();
+
+  return '';
+}
+
+export const renderInitialDocumentLayout: RenderCallback = (...args) => {
+  return '<!DOCTYPE html>' + renderHtmlRecursively(...args);
+};

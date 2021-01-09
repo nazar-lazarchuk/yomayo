@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 //
-import { renderInitialDocumentLayout } from '../app/utils';
+import { renderInitialDocumentLayout, Listener } from '../app/utils';
 
 export interface Cli {
   build(): void;
@@ -33,11 +33,11 @@ export const build: Cli['build'] = () => {
       throw new Error('Store not found');
     }
 
-    const listeners: { key: string, listener(e?: any): any }[] = [];
+    const listeners: Listener[] = [];
 
     fs.writeFileSync(
       path.resolve(resolveDestinationPath, './index.html'),
-      renderInitialDocumentLayout(render, (l) => void(listeners.push(l))),
+      renderInitialDocumentLayout(render, store, (l) => void(listeners.push(l))),
     );
 
     console.log(listeners);
